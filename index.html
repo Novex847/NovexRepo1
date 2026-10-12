@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080c14">
+  <meta name="description" content="NOVEX TECH – moderne digitale Dienstleistungen, KI-Unterstützung und Elektronik.">
+  <title>NOVEX TECH | Technologie. Neu gedacht.</title>
+
+  <style>
+    :root {
+      --bg: #080c14;
+      --panel: #101827;
+      --blue: #75d8ff;
+      --text: #f3f7ff;
+      --muted: #a0aec2;
+      --line: rgba(160, 190, 230, .15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    .glow {
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: #167bff;
+      filter: blur(150px);
+      opacity: .15;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .glow-one {
+      top: 50px;
+      right: -180px;
+    }
+
+    .glow-two {
+      top: 900px;
+      left: -250px;
+      background: #00c8ff;
+      opacity: .08;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(8, 12, 20, .82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 850;
+      font-size: 19px;
+      letter-spacing: -.7px;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(117, 216, 255, .55);
+      border-radius: 12px;
+      color: var(--blue);
+      font-size: 21px;
+      background: linear-gradient(135deg, #15273b, #0b111c);
+      box-shadow: 0 0 25px rgba(65, 175, 255, .08);
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      font-size: 13px;
+      color: #bac7d8;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .nav-contact {
+      padding: 10px 16px;
+      border: 1px solid #33445b;
+      border-radius: 10px;
+      color: white !important;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 650px;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+      gap: 45px;
+      padding-top: 65px;
+      padding-bottom: 90px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 12px;
+      border: 1px solid rgba(117, 216, 255, .2);
+      border-radius: 100px;
+      color: var(--blue);
+      background: rgba(117, 216, 255, .05);
+      font-size: 11px;
+      font-weight: 750;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 12px var(--blue);
+    }
+
+    h1 {
+      font-size: clamp(43px, 6vw, 76px);
+      line-height: 1.06;
+      letter-spacing: -4px;
+      margin: 27px 0;
+      font-weight: 800;
+    }
+
+    .gradient-text {
+      color: var(--blue);
+      background: linear-gradient(100deg, #f4fbff, #75d8ff 55%, #8c9dff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-description {
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .actions {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 19px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 750;
+      transition: .25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      color: #07111b;
+      background: var(--blue);
+      box-shadow: 0 8px 35px rgba(80, 190, 255, .13);
+    }
+
+    .btn-secondary {
+      border: 1px solid #354257;
+      background: rgba(255,255,255,.02);
+    }
+
+    .hero-note {
+      color: #71839a;
+      font-size: 12px;
+      margin-top: 22px;
+    }
+
+    .visual {
+      position: relative;
+      min-height: 390px;
+      display: grid;
+      place-items: center;
+      perspective: 900px;
+    }
+
+    .orbit {
+      position: absolute;
+      width: 310px;
+      height: 310px;
+      border: 1px solid rgba(117, 216, 255, .17);
+      border-radius: 50%;
+      transform: rotateX(66deg) rotateZ(-25deg);
+    }
+
+    .orbit-two {
+      width: 250px;
+      height: 250px;
+      transform: rotateX(66deg) rotateZ(35deg);
+      border-color: rgba(139, 157, 255, .22);
+    }
+
+    .tech-card {
+      position: relative;
+      width: min(320px, 90%);
+      padding: 27px;
+      border: 1px solid rgba(117, 216, 255, .23);
+      border-radius: 24px;
+      background: linear-gradient(145deg, #17263a, #0c121f 75%);
+      box-shadow: 0 30px 100px rgba(0,0,0,.4),
+                  inset 0 1px rgba(255,255,255,.05);
+      transform: rotateY(-7deg) rotateX(3deg);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .tech-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #9badc3;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .chip {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: rgba(117, 216, 255, .12);
+      color: var(--blue);
+      font-size: 22px;
+    }
+
+    .tech-card h2 {
+      font-size: 29px;
+      line-height: 1.2;
+      letter-spacing: -1px;
+      margin: 24px 0 10px;
+    }
+
+    .tech-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .mini-item {
+      padding: 13px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+
+    .mini-item strong {
+      display: block;
+      color: var(--blue);
+      font-size: 12px;
+    }
+
+    .mini-item span {
+      display: block;
+      color: #8fa0b5;
+      font-size: 10px;
+      margin-top: 3px;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotateY(-7deg); }
+      50% { transform: translateY(-12px) rotateY(-4deg); }
+    }
+
+    .ticker {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.015);
+    }
+
+    .ticker-inner {
+      display: flex;
+      justify-content: center;
+      gap: 38px;
+      flex-wrap: wrap;
+      padding: 22px 0;
+      color: #a9b7c9;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .ticker-inner span::before {
+      content: "✳";
+      color: var(--blue);
+      margin-right: 10px;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-head {
+      max-width: 650px;
+      margin-bottom: 42px;
+    }
+
+    .section-label {
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h2.section-title {
+      font-size: clamp(32px, 4vw, 49px);
+      line-height: 1.15;
+      letter-spacing: -2px;
+      margin: 15px 0;
+    }
+
+    .section-description {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .service-card {
+      position: relative;
+      overflow: hidden;
+      padding: 32px;
+      min-height: 330px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(145deg, #121d2d, #0b111b);
+      transition: transform .3s, border-color .3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(117,216,255,.45);
+    }
+
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      border: 1px solid rgba(117,216,255,.23);
+      background: rgba(117,216,255,.08);
+      color: var(--blue);
+      font-size: 24px;
+    }
+
+    .service-number {
+      position: absolute;
+      top: 24px;
+      right: 27px;
+      color: #52637a;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    .service-card h3 {
+      font-size: 24px;
+      letter-spacing: -.8px;
+      margin: 25px 0 12px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+      max-width: 430px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 23px;
+    }
+
+    .tag {
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--line);
+      color: #b9c7d9;
+      font-size: 11px;
+    }
+
+    .service-link {
+      display: inline-block;
+      color: var(--blue);
+      margin-top: 25px;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .service-link:hover {
+      color: white;
+    }
+
+    .feature-section {
+      background: linear-gradient(180deg, transparent, rgba(20,42,68,.22), transparent);
+      border-top: 1px solid rgba(255,255,255,.04);
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 35px;
+    }
+
+    .feature {
+      padding: 24px;
+      border-left: 2px solid #4fbbec;
+      background: rgba(255,255,255,.025);
+      border-radius: 0 14px 14px 0;
+    }
+
+    .feature h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .feature p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .contact-box {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 30px;
+      padding: 44px;
+      border: 1px solid rgba(117,216,255,.25);
+      border-radius: 25px;
+      background:
+        radial-gradient(ellipse at 90% 0%, rgba(43,132,255,.14), transparent 50%),
+        linear-gradient(135deg, #111d2d, #0b111b);
+    }
+
+    .contact-box h2 {
+      font-size: clamp(30px, 4vw, 43px);
+      line-height: 1.2;
+      letter-spacing: -1.5px;
+      margin: 12px 0;
+    }
+
+    .contact-box p {
+      max-width: 550px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .footer-copy, .footer-links {
+      color: #7f90a7;
+      font-size: 11px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+    }
+
+    .footer-links a:hover {
+      color: var(--blue);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (max-width: 800px) {
+      .nav-links {
+        gap: 13px;
+        font-size: 12px;
+      }
+
+      .nav-links a:not(.nav-contact) {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding-top: 65px;
+      }
+
+      .visual {
+        min-height: 340px;
+      }
+
+      h1 {
+        letter-spacing: -2.5px;
+      }
+
+      .services {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-box {
+        grid-template-columns: 1fr;
+        padding: 28px;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .logo {
+        font-size: 16px;
+      }
+
+      .logo-mark {
+        width: 34px;
+        height: 34px;
+      }
+
+      .ticker-inner {
+        gap: 15px;
+        font-size: 9px;
+      }
+
+      .service-card {
+        padding: 24px;
+      }
+
+      .actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="glow glow-one"></div>
+  <div class="glow glow-two"></div>
+
+  <header>
+    <nav class="container">
+      <a class="logo" href="#start" aria-label="NOVEX TECH Startseite">
+        <span class="logo-mark">N</span>
+        NOVEX <span>TECH</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#services">Dienstleistungen</a>
+        <a href="#ueber-uns">Über uns</a>
+        <a class="nav-contact" href="#kontakt">Kontakt ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="container hero" id="start">
+      <div class="hero-copy reveal">
+        <div class="eyebrow">
+          <span class="dot"></span>
+          Technik mit Perspektive
+        </div>
+
+        <h1>
+          Mehr aus<br>
+          <span class="gradient-text">Technologie.</span>
+        </h1>
+
+        <p class="hero-description">
+          Wir verbinden digitale Möglichkeiten mit moderner Technik.
+          Entdecke unsere Ideen rund um KI, digitale Dokumente und
+          Elektronik – übersichtlich, durchdacht und zukunftsorientiert.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="#services">
+            Was wir machen <span>↗</span>
+          </a>
+          <a class="btn btn-secondary" href="#ueber-uns">
+            NOVEX kennenlernen
+          </a>
+        </div>
+
+        <p class="hero-note">
+          Ein junges Projekt mit grossen Ideen.
+        </p>
+      </div>
+
+      <div class="visual reveal" aria-label="Abstrakte Technologie-Darstellung">
+        <div class="orbit"></div>
+        <div class="orbit orbit-two"></div>
+
+        <div class="tech-card">
+          <div class="tech-card-top">
+            <span>NOVEX / SYSTEM</span>
+            <span>01 — 02</span>
+          </div>
+
+          <div class="chip">✳</div>
+
+          <h2>Ideen werden<br>zu Lösungen.</h2>
+
+          <p>Digitale Unterstützung. Moderne Technik. Neue Perspektiven.</p>
+
+          <div class="mini-grid">
+            <div class="mini-item">
+              <strong>KI + DOKUMENTE</strong>
+              <span>Digitale Services</span>
+            </div>
+            <div class="mini-item">
+              <strong>TECH + GEAR</strong>
+              <span>Elektronik</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker">
+      <div class="container ticker-inner">
+        <span>Digitale Lösungen</span>
+        <span>Künstliche Intelligenz</span>
+        <span>Moderne Elektronik</span>
+      </div>
+    </div>
+
+    <section class="container" id="services">
+      <div class="section-head reveal">
+        <div class="section-label">Was wir anbieten</div>
+        <h2 class="section-title">
+          Zwei Bereiche.<br>
+          <span class="gradient-text">Eine Vision.</span>
+        </h2>
+        <p class="section-description">
+          NOVEX TECH vereint digitale Dienstleistungen und Technik
+          unter einem Dach. Unser Angebot wird Schritt für Schritt aufgebaut.
+        </p>
+      </div>
+
+      <div class="services">
+        <article class="service-card reveal">
+          <span class="service-number">01 / DIGITAL</span>
+          <div class="service-icon">✳</div>
+
+          <h3>KI & digitale Services</h3>
+
+          <p>
+            Wir unterstützen bei der Erstellung und Gestaltung digitaler
+            Inhalte – von strukturierten Berichten bis zu professionell
+            aufgebauten Präsentationen und PDF-Dokumenten.
+          </p>
+
+          <div class="tags">
+            <span class="tag">KI-Unterstützung</span>
+            <span class="tag">Berichte</span>
+            <span class="tag">PDF-Dokumente</span>
+            <span class="tag">Präsentationen</span>
+          </div>
+
+          <a class="service-link" href="#kontakt">
+            Interesse an einem Projekt? ↗
+          </a>
+        </article>
+
+        <article class="service-card reveal">
+          <span class="service-number">02 / ELECTRONICS</span>
+          <div class="service-icon">⌘</div>
+
+          <h3>Elektronik & Reselling</h3>
+
+          <p>
+            Unser Ziel ist es, interessante Elektronikprodukte zu entdecken
+            und ausgewählte Technik zu fairen Preisen anzubieten.
+            Konkrete Produkte und Angebote folgen, sobald sie verfügbar sind.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Elektronik</span>
+            <span class="tag">Technikprodukte</span>
+            <span class="tag">Ausgewählte Angebote</span>
+          </div>
+
+          <a class="service-link" href="#kontakt">
+            Fragen zu unserem Angebot? ↗
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="feature-section" id="ueber-uns">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-label">Unsere Grundsätze</div>
+          <h2 class="section-title">
+            Nicht komplizierter.<br>
+            <span class="gradient-text">Sondern besser.</span>
+          </h2>
+          <p class="section-description">
+            Wir wollen Technologie verständlich und praktisch nutzbar machen.
+            Dabei zählen nicht grosse Versprechen, sondern gute Ergebnisse.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature reveal">
+            <h3>01. Klarheit</h3>
+            <p>
+              Verständliche Kommunikation und sauber strukturierte
+              digitale Ergebnisse.
+            </p>
+          </article>
+
+          <article class="feature reveal">
+            <h3>02. Sorgfalt</h3>
+            <p>
+              Wir achten auf eine durchdachte Gestaltung und prüfen
+              unsere Arbeit sorgfältig.
+            </p>
+          </article>
+
+          <article class="feature reveal">
+            <h3>03. Entwicklung</h3>
+            <p>
+              Wir bauen unser Angebot Schritt für Schritt aus und
+              lernen mit jedem neuen Projekt.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="kontakt">
+      <div class="contact-box reveal">
+        <div>
+          <div class="section-label">Der nächste Schritt</div>
+          <h2>Eine Idee im Kopf?<br><span class="gradient-text">Reden wir darüber.</span></h2>
+          <p>
+            Du hast eine Frage zu unseren digitalen Dienstleistungen
+            oder möchtest mehr über NOVEX TECH erfahren?
+            Schreib uns eine Nachricht.
+          </p>
+        </div>
+
+        <a
+          class="btn btn-primary"
+          href="mailto:info.novextec@gmail.com?subject=Anfrage%20an%20NOVEX%20TECH"
+        >
+          E-Mail schreiben ↗
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="logo" href="#start">
+        <span class="logo-mark">N</span>
+        NOVEX <span>TECH</span>
+      </a>
+
+      <p class="footer-copy">
+        © <span id="year"></span> NOVEX TECH. Alle Rechte vorbehalten.
+      </p>
+
+      <div class="footer-links">
+        <a href="#services">Angebot</a>
+        <a href="#ueber-uns">Über uns</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      revealElements.forEach((element) => observer.observe(element));
+    } else {
+      revealElements.forEach((element) =>
+        element.classList.add("visible")
+      );
+    }
+  </script>
+</body>
+</html>
